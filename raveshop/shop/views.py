@@ -1,19 +1,19 @@
-import json
-
-from django.http import HttpResponse
 from django.shortcuts import render
 
-from .models import *
+from .models import Products
+
 
 # Create your views here.
 def index(request):
     products = Products.objects.all()
-    return render(request, 'shop/index.html', {'title': 'Raveshop', 'products': products})
+    return render(request, 'shop/index.html',
+                  {'title': 'Raveshop', 'products': products})
 
 
 def basket(request):
     if request.method == 'GET':
-        basket = {k: v[0] if len(v) == 1 else v for k, v in request.GET.lists()}
+        basket = {k: v[0] if len(v) == 1 else v
+                  for k, v in request.GET.lists()}
         print(basket)
         ids = list(basket.keys())
         print(ids)
@@ -25,4 +25,5 @@ def basket(request):
         products_nums = []
         for p in products:
             products_nums.append((p, basket[str(p.id)]))
-    return render(request, 'shop/basket.html', {'title': 'Raveshop', 'products_nums': products_nums})
+    return render(request, 'shop/basket.html',
+                  {'title': 'Raveshop', 'products_nums': products_nums})

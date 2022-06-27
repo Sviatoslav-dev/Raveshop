@@ -1,0 +1,51 @@
+{
+  "name": "raveshop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint:js": "eslint ./raveshop",
+    "lint:js:fix": "eslint ./raveshop --fix",
+    "lint:css": "stylelint **/*.css",
+    "lint:css:fix": "stylelint **/*.css --fix",
+    "lint:html": "prettier --write .",
+    "lint:html:fix": "prettier --check ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sviatoslav-dev/Raveshop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sviatoslav-dev/Raveshop/issues"
+  },
+  "homepage": "https://github.com/Sviatoslav-dev/Raveshop#readme",
+  "devDependencies": {
+    "eslint": "^8.18.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-html": "^6.2.0",
+    "eslint-plugin-prettier": "^4.1.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "2.7.1",
+    "stylelint": "^14.9.1",
+    "stylelint-config-standard": "^26.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run lint:js:fix",
+      "npm run lint:css:fix",
+      "npm run lint:html:fix",
+      "flake8 raveshop",
+      "git add"
+    ]
+  }
+}

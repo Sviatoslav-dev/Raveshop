@@ -1,19 +1,16 @@
-{% extends 'shop/base.html' %}
-{% load static %}
-
-{% block content %}
+{% extends 'shop/base.html' %} {% load static %} {% block content %}
 <script type="module" src="{% static 'shop/js/index.js' %}"></script>
 <h1>{{title}}</h1>
 <ul>
-    {% for p in products %}
-    <li id="{{p.id}}">
-        <h2>{{p.name}}</h2>
-        <p>{{p.description}}</p>
-        <p>{{p.price}}$</p>
-        <button id="button_{{p.id}}" class="add_button">Add</button>
-        <hr>
-    </li>
-    {% endfor %}
-    <button id="basket_button">Basket</button>
+  {% for p in products %}
+  <li id="{{p.id}}">
+    <h2>{{p.name}}</h2>
+    <p>{{p.description}}</p>
+    <p>{{p.price}}$</p>
+    <button id="button_{{p.id}}" class="add_button">Add</button>
+    <hr />
+  </li>
+  {% endfor %}
+  <button id="basket_button">Basket</button>
 </ul>
 {% endblock %}

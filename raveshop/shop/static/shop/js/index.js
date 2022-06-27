@@ -1,50 +1,48 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const basketButton = document.querySelector('#basket_button'),
-        add_buttons = document.querySelectorAll('.add_button');
+/* eslint-env browser */
+document.addEventListener("DOMContentLoaded", () => {
+  const basketButton = document.querySelector("#basket_button");
+  const addButtons = document.querySelectorAll(".add_button");
 
-    localStorage.removeItem('basket');
+  localStorage.removeItem("basket");
 
-    basketButton.addEventListener('click', () => {
-        let basket = localStorage.getItem('basket');
-        console.log(basket);
-        if (basket !== null) {
-            basket = JSON.parse(basket);
+  basketButton.addEventListener("click", () => {
+    let basket = localStorage.getItem("basket");
+    if (basket !== null) {
+      basket = JSON.parse(basket);
 
-            let count = 0;
-            for(let key in basket) {
-                count++;
-            }
+      let count = 0;
+      Object.keys(basket).forEach(() => {
+        count += 1;
+      });
 
-            if (count > 0) {
-                let get_body = '?';
-                for (var key in basket) {
-                    get_body += key.toString() + '=';
-                    get_body += basket[key].toString();
-                    get_body += '&';
-                }
-                get_body = get_body.slice(0, -1);
-                console.log(get_body);
-                document.location.href = '/basket' + get_body;
-            }
-        }
-    });
-
-
-    for (let i = 0; i < add_buttons.length; i++) {
-        add_buttons[i].addEventListener('click', (event) => {
-            var count = prompt("Please enter amount", "1");
-            count = parseInt(count);
-
-            let id = parseInt(event.target.id.slice(7));
-
-            let basket = localStorage.getItem('basket');
-            if (basket !== null) {
-                basket = JSON.parse(basket);
-            } else {
-                basket = {};
-            }
-            basket[id] = count;
-            localStorage.setItem('basket', JSON.stringify(basket));
+      if (count > 0) {
+        let getBody = "?";
+        Object.keys(basket).forEach((key) => {
+          getBody += `${key.toString()}=`;
+          getBody += basket[key].toString();
+          getBody += "&";
         });
+        getBody = getBody.slice(0, -1);
+        document.location.href = `/basket${getBody}`;
+      }
     }
+  });
+
+  for (let i = 0; i < addButtons.length; i += 1) {
+    addButtons[i].addEventListener("click", (event) => {
+      let count = prompt("Please enter amount", "1"); // eslint-disable-line no-alert
+      count = parseInt(count, 10);
+
+      const id = parseInt(event.target.id.slice(7), 10);
+
+      let basket = localStorage.getItem("basket");
+      if (basket !== null) {
+        basket = JSON.parse(basket);
+      } else {
+        basket = {};
+      }
+      basket[id] = count;
+      localStorage.setItem("basket", JSON.stringify(basket));
+    });
+  }
 });

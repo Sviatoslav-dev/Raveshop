@@ -1,18 +1,15 @@
-{% extends 'shop/base.html' %}
-{% load static %}
-
-{% block content %}
+{% extends 'shop/base.html' %} {% load static %} {% block content %}
 <script type="module" src="{% static 'shop/js/basket.js' %}"></script>
 <h1>{{title}}</h1>
 <ul>
-    {% for pn in products_nums %}
-    <li>
-        <h2>{{pn.0.name}}</h2>
-        <p>{{pn.0.description}}</p>
-        <p>{{pn.0.price}}$</p>
-        <p>{{pn.1}}</p>
-        <hr>
-    </li>
-    {% endfor %}
+  {% for pn in products_nums %}
+  <li>
+    <h2>{{pn.0.name}}</h2>
+    <p>{{pn.0.description}}</p>
+    <p>{{pn.0.price}}$</p>
+    <p>{{pn.1}}</p>
+    <hr />
+  </li>
+  {% endfor %}
 </ul>
 {% endblock content %}
