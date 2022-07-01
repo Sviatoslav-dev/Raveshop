@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const basketButton = document.querySelector("#basket_button");
   const addButtons = document.querySelectorAll(".add_button");
 
-  localStorage.removeItem("basket");
+  //localStorage.removeItem("basket");
 
   basketButton.addEventListener("click", () => {
     let basket = localStorage.getItem("basket");
@@ -33,7 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
       let count = prompt("Please enter amount", "1"); // eslint-disable-line no-alert
       count = parseInt(count, 10);
 
-      const id = parseInt(event.target.id.slice(7), 10);
+      const id = parseInt(event.target.parentElement.id.slice(5), 10);
+      console.log(id);
 
       let basket = localStorage.getItem("basket");
       if (basket !== null) {

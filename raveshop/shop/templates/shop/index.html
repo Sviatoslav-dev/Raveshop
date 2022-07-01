@@ -1,16 +1,56 @@
-{% extends 'shop/base.html' %} {% load static %} {% block content %}
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block content %}
 <script type="module" src="{% static 'shop/js/index.js' %}"></script>
-<h1>{{title}}</h1>
-<ul>
+<div class="container-fluid">
+  <div class="row mt-3">
+    <div class="col offset-md-1">
+      <a href="/" class="text-primary">{{title}}</a>
+    </div>
+    <div class="col offset-md-8">
+      <button id="basket_button" class="btn-warning btn">&#128722;</button>
+    </div>
+  </div>
+</div>
+<div class="container">
   {% for p in products %}
-  <li id="{{p.id}}">
-    <h2>{{p.name}}</h2>
-    <p>{{p.description}}</p>
-    <p>{{p.price}}$</p>
-    <button id="button_{{p.id}}" class="add_button">Add</button>
-    <hr />
-  </li>
+<!--    {% cycle 'col1' 'col2' 'col3' as column %}-->
+    {% if column == "col1" %}
+        <div class="row mt-3">
+          <div class="col item" id="item_{{p.id}}">
+            {% if p.photo %}
+              <p><img src="{{p.photo.url}}" width="200" height="200"></p>
+            {% endif %}
+            <a href="/product/{{p.id}}">{{p.name}}</a>
+            <p>{{p.description}}</p>
+            <p>{{p.price}}$</p>
+            <button class="add_button btn btn-primary">Add to basket</button>
+          </div>
+    {% elif column == "col2" %}
+          <div class="col item" id="item_{{p.id}}">
+            {% if p.photo %}
+              <p><img src="{{p.photo.url}}"  width="200" height="200"></p>
+            {% endif %}
+            <a href="/product/{{p.id}}">{{p.name}}</a>
+            <p>{{p.description}}</p>
+            <p>{{p.price}}$</p>
+            <button class="add_button btn btn-primary">Add to basket</button>
+          </div>
+    {% else %}
+          <div class="col item" id="item_{{p.id}}">
+            {% if p.photo %}
+              <p><img src="{{p.photo.url}}" width="200" height="200"></p>
+            {% endif %}
+            <a href="/product/{{p.id}}">{{p.name}}</a>
+            <p>{{p.description}}</p>
+            <p>{{p.price}}$</p>
+            <button class="add_button btn btn-primary">Add to basket</button>
+          </div>
+        </div>
+    {% endif %}
   {% endfor %}
-  <button id="basket_button">Basket</button>
-</ul>
+  {% if column != "col3" %}
+    </div>
+  {% endif %}
+</div>
 {% endblock %}

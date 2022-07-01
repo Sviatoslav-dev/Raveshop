@@ -27,3 +27,7 @@ def basket(request):
             products_nums.append((p, basket[str(p.id)]))
     return render(request, 'shop/basket.html',
                   {'title': 'Raveshop', 'products_nums': products_nums})
+
+def product(request, product_id):
+    prod = Products.objects.filter(id=product_id)
+    return render(request, 'shop/product.html', {'title': 'Raveshop', 'product': prod[0]})
