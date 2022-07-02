@@ -5,7 +5,7 @@
 <div class="container-fluid">
   <div class="row mt-3">
     <div class="col offset-md-1">
-      <a href="/" class="text-primary">{{title}}</a>
+      <a href="{% url 'home' %}" class="text-primary">{{title}}</a>
     </div>
     <div class="col offset-md-8">
       <button id="basket_button" class="btn-warning btn">&#128722;</button>
@@ -13,37 +13,34 @@
   </div>
 </div>
 <div class="container">
-  {% for p in products %}
+  {% for pi in products_images %}
 <!--    {% cycle 'col1' 'col2' 'col3' as column %}-->
     {% if column == "col1" %}
         <div class="row mt-3">
-          <div class="col item" id="item_{{p.id}}">
-            {% if p.photo %}
-              <p><img src="{{p.photo.url}}" width="200" height="200"></p>
+          <div class="col item" id="item_{{pi.0.id}}">
+            {% if pi.1.photo %}
+              <p><img src="{{pi.1.photo.url}}" width="200" height="200"></p>
             {% endif %}
-            <a href="/product/{{p.id}}">{{p.name}}</a>
-            <p>{{p.description}}</p>
-            <p>{{p.price}}$</p>
+            <a href="{% url 'product' pi.0.id %}">{{pi.0.name}}</a>
+            <p>{{pi.0.price}}$</p>
             <button class="add_button btn btn-primary">Add to basket</button>
           </div>
     {% elif column == "col2" %}
-          <div class="col item" id="item_{{p.id}}">
-            {% if p.photo %}
-              <p><img src="{{p.photo.url}}"  width="200" height="200"></p>
+          <div class="col item" id="item_{{pi.0.id}}">
+            {% if pi.1.photo %}
+              <p><img src="{{pi.1.photo.url}}"  width="200" height="200"></p>
             {% endif %}
-            <a href="/product/{{p.id}}">{{p.name}}</a>
-            <p>{{p.description}}</p>
-            <p>{{p.price}}$</p>
+            <a href="{% url 'product' pi.0.id %}">{{pi.0.name}}</a>
+            <p>{{pi.0.price}}$</p>
             <button class="add_button btn btn-primary">Add to basket</button>
           </div>
     {% else %}
-          <div class="col item" id="item_{{p.id}}">
-            {% if p.photo %}
-              <p><img src="{{p.photo.url}}" width="200" height="200"></p>
+          <div class="col item" id="item_{{pi.0.id}}">
+            {% if pi.1.photo %}
+              <p><img src="{{pi.1.photo.url}}" width="200" height="200"></p>
             {% endif %}
-            <a href="/product/{{p.id}}">{{p.name}}</a>
-            <p>{{p.description}}</p>
-            <p>{{p.price}}$</p>
+            <a href="{% url 'product' pi.0.id %}">{{pi.0.name}}</a>
+            <p>{{pi.0.price}}$</p>
             <button class="add_button btn btn-primary">Add to basket</button>
           </div>
         </div>

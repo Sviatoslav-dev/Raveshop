@@ -1,3 +1,3 @@
 /* eslint-env browser */
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
 });
