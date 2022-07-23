@@ -1,9 +1,12 @@
 /* eslint-env browser */
 document.addEventListener('DOMContentLoaded', () => {
   const basketButton = document.querySelector('#basket_button');
+  const addProductButton = document.querySelector('.add_product_button');
+  const productNum = document.querySelector('#product_num');
   const addButtons = document.querySelectorAll('.add_button');
 
-  // localStorage.removeItem("basket");
+
+  //localStorage.removeItem("basket");
 
   basketButton.addEventListener('click', () => {
     let basket = localStorage.getItem('basket');
@@ -16,34 +19,41 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       if (count > 0) {
-        let getBody = '?';
-        Object.keys(basket).forEach((key) => {
-          getBody += `${key.toString()}=`;
-          getBody += basket[key].toString();
-          getBody += '&';
-        });
-        getBody = getBody.slice(0, -1);
-        document.location.href = `/basket${getBody}`;
+        document.location.href = `/basket`;
       }
     }
   });
 
   for (let i = 0; i < addButtons.length; i += 1) {
     addButtons[i].addEventListener('click', (event) => {
-      let count = prompt('Please enter amount', '1'); // eslint-disable-line no-alert
-      count = parseInt(count, 10);
 
       const id = parseInt(event.target.parentElement.id.slice(5), 10);
       console.log(id);
 
-      let basket = localStorage.getItem('basket');
-      if (basket !== null) {
-        basket = JSON.parse(basket);
-      } else {
-        basket = {};
-      }
-      basket[id] = count;
-      localStorage.setItem('basket', JSON.stringify(basket));
+      const addToBasketTitle = document.querySelector('#addToBasketTitle');
+      const addToBasketImg = document.querySelector('#addToBasketImg');
+      const addToBasketPrice = document.querySelector('#addToBasketPrice');
+
+      const productBlock = event.target.parentElement;
+      const productImgP = productBlock.children[0];
+      const productTitle = productBlock.children[1];
+      const productPrice = productBlock.children[2];
+
+      addToBasketTitle.innerHTML = productTitle.innerHTML;
+      addToBasketImg.setAttribute('src', productImgP.children[0].src);
+      addToBasketPrice.innerHTML = productPrice.innerHTML;
+
+      addProductButton.addEventListener('click', () => {
+        console.log(productNum.value);
+        let basket = localStorage.getItem('basket');
+        if (basket !== null) {
+          basket = JSON.parse(basket);
+        } else {
+          basket = {};
+        }
+        basket[id] = productNum.value;
+        localStorage.setItem('basket', JSON.stringify(basket));
+      });
     });
   }
 });

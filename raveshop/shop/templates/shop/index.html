@@ -23,7 +23,7 @@
             {% endif %}
             <a href="{% url 'product' pi.0.id %}">{{pi.0.name}}</a>
             <p>{{pi.0.price}}$</p>
-            <button class="add_button btn btn-primary">Add to basket</button>
+            <button class="add_button btn btn-primary" data-toggle="modal" data-target="#addToBasketModal">Add to basket</button>
           </div>
     {% elif column == "col2" %}
           <div class="col item" id="item_{{pi.0.id}}">
@@ -32,7 +32,7 @@
             {% endif %}
             <a href="{% url 'product' pi.0.id %}">{{pi.0.name}}</a>
             <p>{{pi.0.price}}$</p>
-            <button class="add_button btn btn-primary">Add to basket</button>
+            <button class="add_button btn btn-primary" data-toggle="modal" data-target="#addToBasketModal">Add to basket</button>
           </div>
     {% else %}
           <div class="col item" id="item_{{pi.0.id}}">
@@ -41,7 +41,7 @@
             {% endif %}
             <a href="{% url 'product' pi.0.id %}">{{pi.0.name}}</a>
             <p>{{pi.0.price}}$</p>
-            <button class="add_button btn btn-primary">Add to basket</button>
+            <button class="add_button btn btn-primary" data-toggle="modal" data-target="#addToBasketModal">Add to basket</button>
           </div>
         </div>
     {% endif %}
@@ -49,5 +49,27 @@
   {% if column != "col3" %}
     </div>
   {% endif %}
+</div>
+<div class="modal fade" id="addToBasketModal" tabindex="-1" aria-labelledby="addToBasketLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p><img src="" id="addToBasketImg"  width="100" height="100"></p>
+        <h5 class="modal-tittle" id="addToBasketTitle"></h5>
+        <p></p>
+        <h6 id="addToBasketPrice"></h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="number" step="1" min="1" max="100" value="1" id="product_num"/>
+        <span>шт.</span>
+      </div>
+      <div class="modal-footer">
+        <button class="add_product_button btn btn-primary" data-dismiss="modal" aria-label="Close">Add</button>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}

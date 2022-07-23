@@ -1,27 +1,30 @@
 {% extends 'shop/base.html' %} {% load static %} {% block content %}
 <script type="module" src="{% static 'shop/js/basket.js' %}"></script>
 <a href="{% url 'home' %}" class="text-primary">{{title}}</a>
-<div class="container">
-  {% for pin in products_images_nums %}
-  <div class="row mt-3" id="item_{{pn.0.id}}">
-    <div class="col">
-      {% if pin.1.photo %}
-        <p><img src="{{pin.1.photo.url}}" width="100" height="100"></p>
-      {% endif %}
-    </div>
-    <div class="col">
-      <h2>{{pin.0.name}}</h2>
-    </div>
-    <div class="col">
-      <p>{{pin.0.price}}$</p>
-    </div>
-    <div class="col">
-      <p>{{pin.2}} шт.</p>
-    </div>
-    <div class="col">
-      <button id="remove_button_{{pn.0.id}}" class="remove_button btn btn-danger">Remove</button>
-    </div>
-  </div>
-  {% endfor %}
+<div id="basket_container" class="container">
+<!--  {% for pin in products_images_nums %}-->
+<!--  <div class="row mt-3" id="item_{{pin.0.id}}">-->
+<!--    <div class="col">-->
+<!--      {% if pin.1.photo %}-->
+<!--        <p><img src="{{pin.1.photo.url}}" width="100" height="100"></p>-->
+<!--      {% endif %}-->
+<!--    </div>-->
+<!--    <div class="col">-->
+<!--      <a href="{% url 'product' pin.0.id %}">{{pin.0.name}}</a>-->
+<!--    </div>-->
+<!--    <div class="col">-->
+<!--      <p>{{pin.0.price}}$</p>-->
+<!--    </div>-->
+<!--    <div class="col">-->
+<!--      <p>{{pin.2}} шт.</p>-->
+<!--    </div>-->
+<!--    <div class="col">-->
+<!--      <button id="remove_button_{{pn.0.id}}" class="remove_button btn btn-danger">Remove</button>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  {% endfor %}-->
+<!--  <div class="row mt-3">-->
+<!--    <p>Total price: {{total_price}}</p>-->
+<!--  </div>-->
 </div>
 {% endblock content %}
