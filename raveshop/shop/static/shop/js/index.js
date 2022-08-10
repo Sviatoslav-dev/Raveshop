@@ -35,16 +35,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const addToBasketPrice = document.querySelector('#addToBasketPrice');
 
       const productBlock = event.target.parentElement;
-      const productImgP = productBlock.children[0];
-      const productTitle = productBlock.children[1];
-      const productPrice = productBlock.children[2];
+      const productImgP = productBlock.children[0].children[0];
+      const productTitle = productBlock.children[0].children[1];
+      const productPrice = productBlock.children[1];
 
       addToBasketTitle.innerHTML = productTitle.innerHTML;
       addToBasketImg.setAttribute('src', productImgP.children[0].src);
       addToBasketPrice.innerHTML = productPrice.innerHTML;
 
       addProductButton.addEventListener('click', () => {
-        console.log(productNum.value);
         let basket = localStorage.getItem('basket');
         if (basket !== null) {
           basket = JSON.parse(basket);

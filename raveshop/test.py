@@ -1,11 +1,5 @@
-from cloudipsp import Api, Checkout
-api = Api(merchant_id=1506449,
-          secret_key='Wu0CblCd0b8BjsVv5MmFlJkWQagksur2')
-checkout = Checkout(api=api)
-data = {
-    "currency": "UAH",
-    "amount": 1000
-}
-url = checkout.url(data).get('checkout_url')
+import telebot
 
-print(url)
+bot = telebot.TeleBot('5382046057:AAFIPxhS5sz9C_hP6D3_dm8hW9W_t9MFJ1I')
+bot.config['api_key'] = '5382046057:AAFIPxhS5sz9C_hP6D3_dm8hW9W_t9MFJ1I'
+print(bot.send_message(473958566, 'massage'))

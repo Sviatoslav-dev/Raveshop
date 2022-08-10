@@ -1,5 +1,5 @@
 body {
-  background-color: #006b1b;
+  padding: 60px 0 60px;
 }
 
 p {
@@ -12,4 +12,51 @@ div {
 
 li {
   color: #541299;
+}
+
+.order-form-container {
+  width: 100%;
+}
+
+nav {
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+}
+
+#customer_data input{
+  float: right;
+  width: 80%;
+}
+
+#customer_data p{
+  padding: 30px 0 30px;
+}
+
+#customer_data {
+  width: 40%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#customer_data button{
+  float: right;
+}
+
+#order_form_div {
+  padding: 100px 0 50px;
+}
+
+#order_form_div h2{
+  text-align: center;
+  width: 100%;
+  padding: 30px 0 30px;
+}
+
+.success-div {
+  padding: 200px 0 30px;
+  text-align: center;
+}
+
+.success-div h1 {
+  padding: 10px 0 50px;
 }

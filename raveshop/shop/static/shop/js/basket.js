@@ -1,5 +1,8 @@
 /* eslint-env browser */
 document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('customer_data');
+  form.addEventListener('submit', SubmitEntry);
+
   function countTotalCost() {
     const totalCostText = document.querySelector('#total_cost');
     const prices = document.querySelectorAll('.price');
@@ -10,12 +13,20 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < prices.length; i += 1) {
       totalCost += parseInt(prices[i].innerHTML) * parseInt(counts[i].value);
     }
-    totalCostText.innerHTML = totalCost.toString() + ' $';
+    totalCostText.innerHTML = 'Total cost: ' + totalCost.toString() + ' $';
   }
 
   function inputCountChange (event) {
     let id = event.target.parentElement.parentElement.id;
     id = parseInt(id.slice(5), 10);
+    let basket = localStorage.getItem('basket');
+    if (basket !== null) {
+      basket = JSON.parse(basket);
+    } else {
+      basket = {};
+    }
+    basket[id] = event.target.value;
+    localStorage.setItem('basket', JSON.stringify(basket));
     countTotalCost();
   }
 
@@ -82,11 +93,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const totalCostRow = document.createElement('div');
-    totalCostRow.setAttribute('class', 'row mt-3');
+    totalCostRow.setAttribute('class', 'row mt-5');
     const totalCostCol = document.createElement('div');
     totalCostRow.setAttribute('class', 'col');
     const totalCostText = document.createElement('h3');
     totalCostText.setAttribute('id', 'total_cost');
+    totalCostText.setAttribute('class', 'text-center');
     totalCostCol.appendChild(totalCostText);
     totalCostRow.appendChild(totalCostCol);
     basketContainer.appendChild(totalCostRow);
@@ -157,5 +169,43 @@ document.addEventListener('DOMContentLoaded', () => {
         item.remove();
       });
     }
+  }
+
+  function SubmitEntry(e) {
+    let basketData = document.getElementById('basket_data');
+    basketData.value = localStorage.getItem('basket').toString();
+    // alert(basketData.value);
+
+    //e.preventDefault();
+
+    // if (validation(form.elements)) {
+    //   const entry = Object.fromEntries(Array.from(form.elements).map(el => [el.name, el.value]));
+    //   entry['basket'] = localStorage.getItem('basket');
+
+      // form.classList.add('sending');
+      // fetch('/contact', {
+      //   method: 'POST',
+      //   body: JSON.stringify(entry),
+      //   cache: 'no-cache',
+      //   headers: new Headers({
+      //     'content-type': 'application/json',
+      //   }),
+      // }).then(response => {
+      //   if (response.status === 200) {
+      //     return Promise.resolve(response);
+      //   } else {
+      //     return Promise.reject(new Error(response.statusText));
+      //   }
+      // }).then(() => {
+      //   form.reset();
+      //   toast('Message sent successfully');
+      // }).catch(error => {
+      //   toast(error, false);
+      // }).then(() => {
+      //   form.classList.remove('sending');
+      // });
+    // } else {
+    //   //toast('Wrong input', false);
+    // }
   }
 });
